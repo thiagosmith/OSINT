@@ -62,5 +62,8 @@ echo "# Realizando verificação de DNS Reverso #"
 echo "#########################################"
 for ns in $(host -t NS $1 | cut -d " " -f4);do host -l $1 $ns;done
 echo "#########################################"
-
+echo "#          DNS Reverso com DIG          #"
+echo "#########################################"
+for ns in $(host -t NS $1 | cut -d " " -f4);do dig axfr $1 @$ns;done
+echo "#########################################"
 fi
